@@ -1,0 +1,83 @@
+package team.techtigers.core.paths.routeplanning;
+
+
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+
+import org.firstinspires.ftc.teamcode.geometry.Point;
+import org.firstinspires.ftc.teamcode.paths.ClosestNodeIsTooFarException;
+import org.firstinspires.ftc.teamcode.paths.NodeCannotBeFoundException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+/**
+ * A graph representing the field
+ */
+public class FieldGraph {
+    private final HashMap<Point, FieldNode> map;
+
+    /**
+     * Construct a FieldGraph
+     *
+     * @param map The graph
+     */
+    public FieldGraph(HashMap<Point, FieldNode> map) {
+        this.map = map;
+    }
+
+    /**
+     * Reset the graph (set all costs to infinity and all sources to null)
+     */
+    public void reset() {
+        for (FieldNode node : map.values()) {
+            node.reset();
+        }
+    }
+
+    /**
+     * Find the closest node in the map to the pose provided
+     *
+     * @param startPose The starting pose
+     * @return The FieldNode closest to the pose given
+     */
+    public FieldNode getClosestNode(Pose2d startPose) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
+        FieldNode closest = null;
+        double minDistance = Double.POSITIVE_INFINITY;
+        Point starting = new Point(startPose.getX(), startPose.getY());
+
+        for (FieldNode node : map.values()) {
+            Point point = node.getValue().center;
+            double newDist = point.dist(starting);
+            if (newDist < minDistance) {
+                minDistance = newDist;
+                closest = node;
+            }
+        }
+        if (closest == null) {
+            throw new NodeCannotBeFoundException();
+        }
+        if (minDistance > 36) {
+            throw new ClosestNodeIsTooFarException();
+        }
+        return closest;
+    }
+
+    /**
+     * Print out the map for debugging purposes
+     */
+    public void dump() {
+        ArrayList<FieldNode> values = new ArrayList<>(map.values());
+        values.sort((FieldNode node1, FieldNode node2) -> {
+            double compareX = node1.getValue().center.x - node2.getValue().center.x;
+            if (compareX != 0) {
+                return (int) compareX;
+            } else {
+                return (int) (node1.getValue().center.y - node2.getValue().center.y);
+            }
+        });
+        for (FieldNode val : values) {
+            val.dump();
+        }
+    }
+}
