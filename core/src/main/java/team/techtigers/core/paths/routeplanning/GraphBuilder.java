@@ -1,9 +1,10 @@
 package team.techtigers.core.paths.routeplanning;
 
-import org.firstinspires.ftc.teamcode.geometry.Point;
-import org.firstinspires.ftc.teamcode.geometry.Rectangle;
 
 import java.util.HashMap;
+
+import team.techtigers.core.paths.geometry.Point;
+import team.techtigers.core.paths.geometry.Rectangle;
 
 /**
  * The class used to create graphs

@@ -1,11 +1,10 @@
 package team.techtigers.core.paths;
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
-import org.firstinspires.ftc.teamcode.geometry.Point;
+import team.techtigers.core.paths.geometry.Point;
+
 
 /**
  * Represents a waypoint in a trajectory. A waypoint is a point in a trajectory that the robot must
@@ -92,7 +91,6 @@ public class Waypoint {
     }
 
     @Override
-    @NonNull
     public String toString() {
         return "x: " + getX() + " y: " + getY() + " h: " + getHeading();
     }

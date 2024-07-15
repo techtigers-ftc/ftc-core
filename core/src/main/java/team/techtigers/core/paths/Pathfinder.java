@@ -2,17 +2,15 @@ package team.techtigers.core.paths;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
-import com.qualcomm.robotcore.util.RobotLog;
-
-import org.firstinspires.ftc.teamcode.paths.routeplanning.Dijkstra;
-import org.firstinspires.ftc.teamcode.paths.routeplanning.FieldGraph;
-import org.firstinspires.ftc.teamcode.paths.routeplanning.FieldNode;
-import org.firstinspires.ftc.teamcode.paths.routeplanning.GraphBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import team.techtigers.core.paths.routeplanning.Dijkstra;
+import team.techtigers.core.paths.routeplanning.FieldGraph;
+import team.techtigers.core.paths.routeplanning.FieldNode;
+import team.techtigers.core.paths.routeplanning.GraphBuilder;
 
 
 /**
@@ -105,10 +103,10 @@ public class Pathfinder {
      *
      * @param startPose The starting pose
      * @param endPose   The ending Pose
-     * @return Automatically generate paths in the Auto-Op, or create trajectories in the Tele-Op
-     * in order to make controlling the robot easier
+     * @return A list of Waypoints that represent the path
      */
-    public Trajectory generatePath(Pose2d startPose, Pose2d endPose) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException, TrajectoryFactoryException {
+    public ArrayList<Waypoint> generatePath(Pose2d startPose,
+                                            Pose2d endPose) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
         if (poseCloseEnough(startPose, endPose)) {
             throw new PathCannotBeFoundException();
         }
@@ -119,17 +117,14 @@ public class Pathfinder {
         FieldNode end = graph.getClosestNode(endPose);
 
         if (start.getValue().center.equals(end.getValue().center)) {
-            return TrajectoryFactory.createFromWaypoints(
-                    new ArrayList<>(
-                            Arrays.asList(new Waypoint[]{
-                                    new Waypoint(startPose), new Waypoint(endPose)
-                            })));
+            return new ArrayList<>(
+                    Arrays.asList(new Waypoint(startPose), new Waypoint(endPose)));
         }
 
         ArrayList<FieldNode> nodePath = planner.findPath(start, end);
 
         ArrayList<Waypoint> path = (ArrayList<Waypoint>)
-                nodePath.stream().map((fieldNode -> new Waypoint(fieldNode.getValue().center)))
+                nodePath.stream().map((fieldNode -> new Waypoint(fieldNode.getValue().center.getPose2d())))
                         .collect(Collectors.toList());
 
         double headingDiff = (endPose.getHeading() - startPose.getHeading()) / (path.size() - 1);
@@ -172,18 +167,8 @@ public class Pathfinder {
             }
         }
 
-        RobotLog.vv("tt-sm", "Before PRUNE");
-        for (Waypoint point: path) {
-            RobotLog.vv("tt-sm", "%s", point);
-        }
-
         path = pruneNodes(path);
 
-        RobotLog.vv("tt-sm", "AFTER PRUNE");
-        for (Waypoint point: path) {
-            RobotLog.vv("tt-sm", "%s", point);
-        }
-
-        return TrajectoryFactory.createFromWaypoints(path);
+        return path;
     }
 }

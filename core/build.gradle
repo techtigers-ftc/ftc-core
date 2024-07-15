@@ -31,6 +31,7 @@ dependencies {
     testImplementation libs.junit.jupiter.params
     testImplementation libs.mockito.core
     implementation libs.ftcrobotcore
+    implementation libs.roadrunner
 }
 
 tasks.withType(Test).configureEach {
