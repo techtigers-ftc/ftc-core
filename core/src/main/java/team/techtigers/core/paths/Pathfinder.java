@@ -27,17 +27,19 @@ public class Pathfinder {
 
     /**
      * Construct a Pathfinder
+     * @param fieldMap The map of the field Pathfinder uses to route
+     * @param divisionsPerTile The number of subdivisions per tile
      */
-    private Pathfinder() {
-        graph = GraphBuilder.buildGraph();
+    private Pathfinder(int[][] fieldMap, int divisionsPerTile) {
+        graph = GraphBuilder.buildGraph(fieldMap, divisionsPerTile);
         planner = new Dijkstra<>();
     }
 
     /**
      * Initialize the Pathfinder instance
      */
-    public static void initialize() {
-        instance = new Pathfinder();
+    public static void initialize(int[][] fieldMap, int divisionsPerTile) {
+        instance = new Pathfinder(fieldMap, divisionsPerTile);
     }
 
     /**
@@ -134,7 +136,7 @@ public class Pathfinder {
                     startPose.getHeading() + (index * headingDiff)));
         }
 
-        if (path.size() == 0) {
+        if (path.isEmpty()) {
             throw new PathCannotBeFoundException();
         }
 

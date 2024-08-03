@@ -24,6 +24,20 @@ public class Point {
     }
 
     /**
+     * @return Get the x value
+     */
+    public double getX() {
+        return this.x;
+    }
+
+    /**
+     * @return Get the y value
+     */
+    public double getY() {
+        return this.y;
+    }
+
+    /**
      * Overloaded constructor using a vector
      *
      * @param vector The vector to be used
