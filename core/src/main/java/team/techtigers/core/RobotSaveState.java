@@ -49,9 +49,9 @@ public class RobotSaveState {
     }
 
     /**
-     * Resets the state to be null
+     * Resets the instance of this class to be null
      */
-    public static void reset() {
-        state = null;
+    public void reset() {
+        instance = null;
     }
 }
