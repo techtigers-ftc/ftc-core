@@ -30,29 +30,28 @@ public class RobotSaveState {
      * Gets the current robot state
      * @return The current robot state
      */
-    public HashMap<String, Object> getState() {
+    public Object getState(String key) {
         try {
-            return state;
+            return state.get(key);
         } catch (NullPointerException e){
-            System.out.println("Error: No state has been set");
-            System.out.println("Returning null instead");
-            return null;
+           throw new IllegalStateException("No state has been set for key: " + key);
         }
     }
 
     /**
      * Sets the current robot state, requires a string for identification
      * and object for the value to be saved
-     * @param state The new value to be saved
+     * @param key The key to be used for identification
+     * @param value The value to be saved
      */
-    public void setState(HashMap<String, Object> state) {
-        this.state = state;
+    public void setState(String key, Object value) {
+        state.put(key, value);
     }
 
     /**
      * Resets the state to be null
      */
-    public void reset() {
+    public static void reset() {
         state = null;
     }
 }
