@@ -8,8 +8,10 @@ Here's how to use pathfinder...
    `private divisionsPerTile = fieldMap.length / 6;`
 3. Initialize pathfinder and get an instance.
    `Pathfinder.initialize(fieldMap, divisionsPerTile);`
-   `Pathfinder pf = Pathfinder.getInsttance();`
-4. Decide on a start and end point TODO
+   `Pathfinder pf = Pathfinder.getInstance();`
+4. Decide on a start and end pose `(x, y, θ)`. `θ` is in degrees, and `x` and `y` are in inches.
+   `start = Waypoint(Point(1, 1), 0)`
+5. `start = Waypoint(Point(10, 10), 180)`
 5. Run Pathfinder
    `ArrayList<Waypoint> path = pf.generatePath(start, end);`
 
