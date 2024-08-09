@@ -1,8 +1,5 @@
 package team.techtigers.core.paths;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-
 import team.techtigers.core.paths.geometry.Point;
 
 
@@ -11,17 +8,18 @@ import team.techtigers.core.paths.geometry.Point;
  * pass through.
  */
 public class Waypoint {
-    private final Pose2d pose;
-    private final Vector2d vector;
+    private final Point point;
+    private final double heading;
 
     /**
-     * Constructs a new Waypoint using a pose input
+     * Constructs a new Waypoint using a point input
      *
-     * @param pose The pose to be saved inside the class
+     * @param point The pose to be saved inside the class
+     * @param heading The heading
      */
-    public Waypoint(Pose2d pose) {
-        this.pose = pose;
-        vector = new Vector2d(pose.getX(), pose.getY());
+    public Waypoint(Point point, double heading) {
+        this.point = point;
+        this.heading = heading;
     }
 
     /**
@@ -32,7 +30,7 @@ public class Waypoint {
      * @param heading The heading of the waypoint
      */
     public Waypoint(double x, double y, double heading) {
-        this(new Pose2d(x, y, heading));
+        this(new Point(x, y), heading);
     }
 
     /**
@@ -42,11 +40,11 @@ public class Waypoint {
      * @param y The y coordinate of the waypoint
      */
     public Waypoint(double x, double y) {
-        this(new Pose2d(x, y, 0));
+        this(new Point(x, y), 0);
     }
 
     /**
-     * Constructs a Waypoint using a Point and a heading
+     * Constructs a Waypoint using a Point
      *
      * @param point   The point of the Waypoint
      */
@@ -56,38 +54,31 @@ public class Waypoint {
 
 
     /**
-     * @return the waypoint as a Pose2d
+     * @return the waypoint as a Point
      */
-    public Pose2d getPose() {
-        return pose;
-    }
-
-    /**
-     * @return the waypoint as a Vector2d
-     */
-    public Vector2d getVector() {
-        return vector;
+    public Point getPoint() {
+        return point;
     }
 
     /**
      * @return the x coordinate of the waypoint
      */
     public double getX() {
-        return pose.getX();
+        return point.getX();
     }
 
     /**
      * @return the y coordinate of the waypoint
      */
     public double getY() {
-        return pose.getY();
+        return point.getY();
     }
 
     /**
      * @return the heading of the waypoint
      */
     public double getHeading() {
-        return pose.getHeading();
+        return this.heading;
     }
 
     @Override

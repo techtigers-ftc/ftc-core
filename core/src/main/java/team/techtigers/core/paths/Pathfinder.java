@@ -1,12 +1,10 @@
 package team.techtigers.core.paths;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import team.techtigers.core.paths.geometry.Point;
 import team.techtigers.core.paths.routeplanning.Dijkstra;
 import team.techtigers.core.paths.routeplanning.FieldGraph;
 import team.techtigers.core.paths.routeplanning.FieldNode;
@@ -55,21 +53,21 @@ public class Pathfinder {
     }
 
     private static double getAngleBetween3Points(Waypoint first, Waypoint second, Waypoint third) {
-        Vector2d firstVector = first.getVector();
-        Vector2d secondVector = second.getVector();
-        Vector2d thirdVector = third.getVector();
+        Point firstVector = first.getPoint();
+        Point secondVector = second.getPoint();
+        Point thirdVector = third.getPoint();
 
-        Vector2d secondToFirst = firstVector.minus(secondVector);
-        Vector2d secondToThird = thirdVector.minus(secondVector);
+        Point secondToFirst = firstVector.minus(secondVector);
+        Point secondToThird = thirdVector.minus(secondVector);
 
-        return secondToFirst.angleBetween(secondToThird);
+        return secondToFirst.angleTo(secondToThird);
     }
 
-    private boolean poseCloseEnough(Pose2d pose1, Pose2d pose2) {
+    private boolean pointCloseEnough(Waypoint point1, Waypoint point2) {
         double tolerance = 2.5;
-        boolean xEquals = Math.abs(pose1.getX() - pose2.getX()) < tolerance;
-        boolean yEquals = Math.abs(pose1.getY() - pose2.getY()) < tolerance;
-        boolean headingEquals = Math.abs(pose1.getHeading() - pose2.getHeading()) < tolerance;
+        boolean xEquals = Math.abs(point1.getX() - point2.getX()) < tolerance;
+        boolean yEquals = Math.abs(point1.getY() - point2.getY()) < tolerance;
+        boolean headingEquals = Math.abs(point1.getHeading() - point2.getHeading()) < tolerance;
 
         return xEquals && yEquals && headingEquals;
     }
@@ -103,37 +101,37 @@ public class Pathfinder {
     /**
      * Generate a TrajectorySequence from any pose to another
      *
-     * @param startPose The starting pose
-     * @param endPose   The ending Pose
+     * @param startPoint The starting pose
+     * @param endPoint   The ending Pose
      * @return A list of Waypoints that represent the path
      */
-    public ArrayList<Waypoint> generatePath(Pose2d startPose,
-                                            Pose2d endPose) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
-        if (poseCloseEnough(startPose, endPose)) {
+    public ArrayList<Waypoint> generatePath(Waypoint startPoint,
+                                            Waypoint endPoint) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
+        if (pointCloseEnough(startPoint, endPoint)) {
             throw new PathCannotBeFoundException();
         }
 
         graph.reset();
 
-        FieldNode start = graph.getClosestNode(startPose);
-        FieldNode end = graph.getClosestNode(endPose);
+        FieldNode start = graph.getClosestNode(startPoint.getPoint());
+        FieldNode end = graph.getClosestNode(endPoint.getPoint());
 
         if (start.getValue().center.equals(end.getValue().center)) {
             return new ArrayList<>(
-                    Arrays.asList(new Waypoint(startPose), new Waypoint(endPose)));
+                    Arrays.asList(startPoint, endPoint));
         }
 
         ArrayList<FieldNode> nodePath = planner.findPath(start, end);
 
         ArrayList<Waypoint> path = (ArrayList<Waypoint>)
-                nodePath.stream().map((fieldNode -> new Waypoint(fieldNode.getValue().center.getPose2d())))
+                nodePath.stream().map((fieldNode -> new Waypoint(fieldNode.getValue().center)))
                         .collect(Collectors.toList());
 
-        double headingDiff = (endPose.getHeading() - startPose.getHeading()) / (path.size() - 1);
+        double headingDiff = (endPoint.getHeading() - startPoint.getHeading()) / (path.size() - 1);
         for (int index = 0; index < path.size(); index++) {
             Waypoint currentWaypoint = path.get(index);
             path.set(index, new Waypoint(currentWaypoint.getX(), currentWaypoint.getY(),
-                    startPose.getHeading() + (index * headingDiff)));
+                    startPoint.getHeading() + (index * headingDiff)));
         }
 
         if (path.isEmpty()) {
@@ -141,13 +139,13 @@ public class Pathfinder {
         }
 
         // If start pose and start node center pose is the same, do not add the start pose point
-        if (!poseCloseEnough(startPose, path.get(0).getPose())) {
-            path.add(0, new Waypoint(startPose));
+        if (!pointCloseEnough(startPoint, path.get(0))) {
+            path.add(0, startPoint);
         }
 
         // If end pose and end node center pose is the same, do not add the end pose point
-        if (!poseCloseEnough(endPose, path.get(path.size() - 1).getPose())) {
-            path.add(new Waypoint(endPose));
+        if (!pointCloseEnough(endPoint, path.get(path.size() - 1))) {
+            path.add(endPoint);
         }
 
         // Removing back and forth movement that stalls calculation in beginning
