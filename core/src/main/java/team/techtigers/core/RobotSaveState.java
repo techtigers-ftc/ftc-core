@@ -31,11 +31,10 @@ public class RobotSaveState {
      * @return The current robot state
      */
     public Object getState(String key) {
-        try {
-            return state.get(key);
-        } catch (NullPointerException e){
-           throw new IllegalStateException("No state has been set for key: " + key);
+        if (!state.containsKey(key)) {
+            throw new IllegalStateException("No state has been set for key: " + key);
         }
+            return state.get(key);
     }
 
     /**
@@ -45,7 +44,11 @@ public class RobotSaveState {
      * @param value The value to be saved
      */
     public void setState(String key, Object value) {
-        state.put(key, value);
+        if (key == null){
+            throw new NullPointerException("Key cannot be null");
+        } else {
+            state.put(key, value);
+        }
     }
 
     /**
