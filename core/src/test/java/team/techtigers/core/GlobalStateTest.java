@@ -12,8 +12,9 @@ public class GlobalStateTest {
     class StartTimerMethod {
         @Test
         @DisplayName("Starts a timer")
-        public void testStartTimer() {
+        public void testStartTimer() throws InterruptedException{
             GlobalState globalState = new GlobalState();
+            Thread.sleep(1);
             double runTime = globalState.getRunTime();
             assertTrue(runTime > 0);
         }
