@@ -18,11 +18,11 @@ public class ExampleSprite extends Sprite {
 
     @Override
     protected void showSprite(Color[][] leds) {
-        leds[1][0] = getColor();
-        leds[1][1] = getColor();
-        leds[1][2] = getColor();
-        leds[1][3] = getColor();
-        leds[1][4] = getColor();
-        leds[0][3] = getColor();
+        leds[getX() + 1][getY()] = getColor();
+        leds[getX() + 1][getY() + 1] = getColor();
+        leds[getX() + 1][getY() + 2] = getColor();
+        leds[getX() + 1][getY() + 3] = getColor();
+        leds[getX() + 1][getY() + 4] = getColor();
+        leds[getX()][getY() + 3] = getColor();
     }
 }

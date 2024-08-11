@@ -6,7 +6,7 @@ create a new DisplayRegion array and define the regions you would like to use an
 
 Here's an example of a simple view with a single region:
 ```java
-public class ExampleView extends DisplayView {
+public class ExampleView extends DisplayView { // Create a new view class that extends the base DisplayView class
     public ExampleView() {
         super(new DisplayRegion[]{ // Creates a new DisplayRegion array
                 new ExampleRegion(0,0) // Defines the region at position (0,0)
@@ -24,7 +24,7 @@ they can be referred to later on. You also need to add a 'Sprite' array to the r
 
 Here's an example of what the region class should look like so far:
 ```java
-public class ExampleRegion extends DisplayRegion {
+public class ExampleRegion extends DisplayRegion { // Create a new region class that extends the base DisplayRegion class
     private final Sprite[] sprites; // Define Sprite array
     private final ExampleSprite oneInTensDigit; // Define first sprite
     private final ExampleSprite oneInOnesDigit; // Define second sprite
@@ -74,7 +74,44 @@ public void update() {
 }
 ```
 
+At the end of every region, you need to override the 'getSprites' method to return the array of sprites that
+you have defined in the region.
+
+Here's an example of what the 'getSprites' method should look like:
+```java
+@Override
+protected Sprite[] getSprites() {
+    return this.sprites;
+}
+```
+
 ## Sprites
 Sprites are objects that contain color data and are used to display images on the LED board. To create a new sprite,
+create a class which extends the base 'Sprite' class. Within the super constructor, define the width and height of the sprite.
+Add inputs to the constructor to define the position of the sprite in the region, and add these inputs to the super constructor. 
+These inputs will then be used when you create a region.
 
+Here's an example of what the beginning of your sprite class should look like:
+```java
+public class ExampleSprite extends Sprite { // Create a new sprite class that extends the base Sprite class
+    public ExampleSprite(int x, int y) {
+        super(x, y, 2, 5);
+    }
+}
+```
 
+In order to define the pixels that will make up the sprite, you will need to override the 'showSprite' method.
+Within this method, you can write to the Color[][] array. 
+
+Here's an example of how this works:
+```java
+@Override
+protected void showSprite(Color[][] leds) {
+    leds[getX() + 1][getY()] = getColor(); // Set the color of the pixel at position (1,0) to the color of the sprite
+    leds[getX() + 1][getY() + 1] = getColor(); // Set the color of the pixel at position (1,1) to the color of the sprite
+    leds[getX() + 1][getY() + 2] = getColor(); // Set the color of the pixel at position (1,2) to the color of the sprite
+    leds[getX() + 1][getY() + 3] = getColor(); // Set the color of the pixel at position (1,3) to the color of the sprite
+    leds[getX() + 1][getY() + 4] = getColor(); // Set the color of the pixel at position (1,4) to the color of the sprite
+    leds[getX()][getY() + 3] = getColor(); // Set the color of the pixel at position (0,3) to the color of the sprite
+    }
+```
