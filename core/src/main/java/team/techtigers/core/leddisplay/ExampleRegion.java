@@ -11,6 +11,9 @@ public class ExampleRegion extends DisplayRegion {
     private final ExampleSprite oneInOnesDigit;
     private final ElapsedTime timer;
 
+    /**
+     * Creates a new example region
+     */
     public ExampleRegion(int x, int y) {
         super(x, y, 4, 7);
         this.oneInTensDigit = new ExampleSprite(0, 0);
