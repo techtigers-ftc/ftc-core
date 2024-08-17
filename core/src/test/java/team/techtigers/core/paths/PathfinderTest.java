@@ -1,6 +1,7 @@
 package team.techtigers.core.paths;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -14,26 +15,6 @@ class PathfinderTest {
 
     @BeforeEach
     void setUp() {
-//         int[][] map = new int[][] {
-//                new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-//                new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-//                new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 },
-//                new int[] { 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 },
-//                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0 },
-//                new int[] { 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 },
-//                new int[] { 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0 },
-//                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0 },
-//                new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-//    };
          int[][] map = new int[][] {
                  new int[] { 1, 0, 0, 0, 0, 0 },
                  new int[] { 1, 1, 1, 0, 0, 0 },
@@ -45,16 +26,17 @@ class PathfinderTest {
         double divisionsPerTile = 1;
         Pathfinder.initialize(map, divisionsPerTile);
         pathfinder = Pathfinder.getInstance();
-//        System.out.println(pathfinder.);
     }
 
     @Test
+    @DisplayName("Test Pathfinder Init")
     void testInitialization() {
         assertNotNull(pathfinder, "Pathfinder should be initialized.");
     }
 
     @Test
-    void testGeneratePath_StraightLine() throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
+    @DisplayName("Test Pathfinder")
+    void testGeneratePath() throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
         Waypoint startPoint = new Waypoint(0, 0, 0);
         Waypoint endPoint1 = new Waypoint(110, 120, 0);
         Waypoint endPoint2 = new Waypoint(120, 120, 0);
