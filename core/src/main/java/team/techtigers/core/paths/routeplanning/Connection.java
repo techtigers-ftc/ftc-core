@@ -25,6 +25,14 @@ public class Connection {
         this.cost = cost;
     }
 
+    /**
+     * Get the target
+     * @return The target
+     */
+    public Node getTarget() {
+        return this.target;
+    }
+
     @Override
     public String toString() {
         return this.target.toString();

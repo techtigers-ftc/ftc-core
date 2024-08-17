@@ -140,6 +140,14 @@ public class Node<T> {
     }
 
     /**
+     * Get the connections
+     * @return The connections
+     */
+    public ArrayList<Connection> getConnections() {
+        return this.connections;
+    }
+
+    /**
      * Convert this Node to string
      *
      * @return The value's string representation

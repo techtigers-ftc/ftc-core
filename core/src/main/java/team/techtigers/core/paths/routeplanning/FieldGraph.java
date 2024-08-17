@@ -1,9 +1,5 @@
 package team.techtigers.core.paths.routeplanning;
 
-
-
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,19 +33,26 @@ public class FieldGraph {
     }
 
     /**
+     * Get the map
+     * @return The map
+     */
+    public HashMap<Point, FieldNode> getMap() {
+        return this.map;
+    }
+
+    /**
      * Find the closest node in the map to the pose provided
      *
-     * @param startPose The starting pose
+     * @param startPoint The starting pose
      * @return The FieldNode closest to the pose given
      */
-    public FieldNode getClosestNode(Pose2d startPose) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
+    public FieldNode getClosestNode(Point startPoint, double threshold) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
         FieldNode closest = null;
         double minDistance = Double.POSITIVE_INFINITY;
-        Point starting = new Point(startPose.getX(), startPose.getY());
 
         for (FieldNode node : map.values()) {
             Point point = node.getValue().center;
-            double newDist = point.dist(starting);
+            double newDist = point.dist(startPoint);
             if (newDist < minDistance) {
                 minDistance = newDist;
                 closest = node;
@@ -58,7 +61,7 @@ public class FieldGraph {
         if (closest == null) {
             throw new NodeCannotBeFoundException();
         }
-        if (minDistance > 36) {
+        if (minDistance > threshold) {
             throw new ClosestNodeIsTooFarException();
         }
         return closest;

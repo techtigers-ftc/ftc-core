@@ -1,8 +1,5 @@
 package team.techtigers.core.paths.geometry;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-
 /**
  * A two dimensional point
  */
@@ -24,21 +21,19 @@ public class Point {
     }
 
     /**
-     * Overloaded constructor using a vector
-     *
-     * @param vector The vector to be used
+     * @return Get the x value
      */
-    public Point(Vector2d vector) {
-        x = vector.getX();
-        y = vector.getY();
+    public double getX() {
+        return this.x;
     }
 
     /**
-     * @return A Pose2d using the point, without a heading
+     * @return Get the y value
      */
-    public Pose2d getPose2d() {
-        return new Pose2d(x, y);
+    public double getY() {
+        return this.y;
     }
+
 
     @Override
     public String toString() {
@@ -67,6 +62,16 @@ public class Point {
      */
     public Point add(Point other) {
         return new Point(this.x + other.x, this.y + other.y);
+    }
+
+    /**
+     * Perform vector subtraction between two Points
+     *
+     * @param other The other Point
+     * @return The resulting Point
+     */
+    public Point minus(Point other) {
+        return new Point(this.x - other.x, this.y - other.y);
     }
 
     /**
