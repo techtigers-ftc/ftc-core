@@ -2,13 +2,10 @@ package team.techtigers.core.paths.routeplanning;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import team.techtigers.core.paths.Pathfinder;
 
 public class DijkstraTest {
     @Test

@@ -19,7 +19,7 @@ public class GraphBuilder {
      *                         divisions per each field tile used.
      * @return A graph representing the field given
      */
-    public static FieldGraph buildGraph(int[][] fieldMap, int divisionsPerTile) {
+    public static FieldGraph buildGraph(int[][] fieldMap, double divisionsPerTile) {
 
         HashMap<Point, FieldNode> map = new HashMap<>();
         for (int x = 0; x < fieldMap.length; x++) {

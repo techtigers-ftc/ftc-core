@@ -21,6 +21,7 @@ public class Pathfinder {
     private final FieldGraph graph;
 
     private final Dijkstra planner;
+    private final double divisionsPerTile;
 
 
     /**
@@ -28,15 +29,16 @@ public class Pathfinder {
      * @param fieldMap The map of the field Pathfinder uses to route
      * @param divisionsPerTile The number of subdivisions per tile
      */
-    private Pathfinder(int[][] fieldMap, int divisionsPerTile) {
+    private Pathfinder(int[][] fieldMap, double divisionsPerTile) {
         graph = GraphBuilder.buildGraph(fieldMap, divisionsPerTile);
         planner = new Dijkstra<>();
+        this.divisionsPerTile = divisionsPerTile;
     }
 
     /**
      * Initialize the Pathfinder instance
      */
-    public static void initialize(int[][] fieldMap, int divisionsPerTile) {
+    public static void initialize(int[][] fieldMap, double divisionsPerTile) {
         instance = new Pathfinder(fieldMap, divisionsPerTile);
     }
 
@@ -113,8 +115,10 @@ public class Pathfinder {
 
         graph.reset();
 
-        FieldNode start = graph.getClosestNode(startPoint.getPoint());
-        FieldNode end = graph.getClosestNode(endPoint.getPoint());
+        double threshold = 36/this.divisionsPerTile * Math.sqrt(2);
+
+        FieldNode start = graph.getClosestNode(startPoint.getPoint(), threshold);
+        FieldNode end = graph.getClosestNode(endPoint.getPoint(), threshold);
 
         if (start.getValue().center.equals(end.getValue().center)) {
             return new ArrayList<>(

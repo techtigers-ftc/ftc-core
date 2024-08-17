@@ -33,12 +33,20 @@ public class FieldGraph {
     }
 
     /**
+     * Get the map
+     * @return The map
+     */
+    public HashMap<Point, FieldNode> getMap() {
+        return this.map;
+    }
+
+    /**
      * Find the closest node in the map to the pose provided
      *
      * @param startPoint The starting pose
      * @return The FieldNode closest to the pose given
      */
-    public FieldNode getClosestNode(Point startPoint) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
+    public FieldNode getClosestNode(Point startPoint, double threshold) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
         FieldNode closest = null;
         double minDistance = Double.POSITIVE_INFINITY;
 
@@ -53,7 +61,7 @@ public class FieldGraph {
         if (closest == null) {
             throw new NodeCannotBeFoundException();
         }
-        if (minDistance > 36) {
+        if (minDistance > threshold) {
             throw new ClosestNodeIsTooFarException();
         }
         return closest;
