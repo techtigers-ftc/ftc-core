@@ -1,11 +1,7 @@
-package team.techtigers.core;
+package team.techtigers.core.leddisplay;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import team.techtigers.core.leddisplay.Color;
-import team.techtigers.core.leddisplay.DisplayRegion;
-import team.techtigers.core.leddisplay.Sprite;
 
 class DisplayRegionTest {
 
