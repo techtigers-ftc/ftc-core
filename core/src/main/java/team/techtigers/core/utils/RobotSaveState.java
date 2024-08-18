@@ -1,4 +1,4 @@
-package team.techtigers.core;
+package team.techtigers.core.utils;
 
 import java.util.HashMap;
 
