@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.gradle.mavencentral)
+//    alias(libs.plugins.gradle.publish)
 }
 
 android {
@@ -30,8 +32,6 @@ dependencies {
     testImplementation libs.junit.jupiter
     testImplementation libs.junit.jupiter.params
     testImplementation libs.mockito.core
-    implementation libs.ftcrobotcore
-    implementation libs.roadrunner
 }
 
 tasks.withType(Test).configureEach {
