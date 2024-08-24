@@ -1,7 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.gradle.mavencentral)
-//    alias(libs.plugins.gradle.publish)
 }
 
 android {

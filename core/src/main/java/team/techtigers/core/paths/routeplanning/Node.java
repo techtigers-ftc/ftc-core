@@ -1,7 +1,5 @@
 package team.techtigers.core.paths.routeplanning;
 
-import com.qualcomm.robotcore.util.RobotLog;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -170,7 +168,6 @@ public class Node<T> {
      * Print out the node for debugging purposes
      */
     public void dump() {
-        RobotLog.vv("tt-sm", "%s %s Cost: %3d Source: %s", value, connections, cost, source);
     }
 }
 

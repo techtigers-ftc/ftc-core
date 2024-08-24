@@ -1,6 +1,5 @@
 package team.techtigers.core.leddisplay;
 
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * A class that represents a region in which the number 11 is displayed and moves up and down
@@ -9,7 +8,7 @@ public class ExampleRegion extends DisplayRegion {
     private final Sprite[] sprites;
     private final ExampleSprite oneInTensDigit;
     private final ExampleSprite oneInOnesDigit;
-    private final ElapsedTime timer;
+    private double lastTime;
 
     /**
      * Creates a new example region
@@ -20,21 +19,21 @@ public class ExampleRegion extends DisplayRegion {
         this.oneInOnesDigit = new ExampleSprite(2, 0);
         oneInTensDigit.setColor(Color.PINK);
         oneInOnesDigit.setColor(Color.BLUE);
-        this.timer = new ElapsedTime();
+        lastTime = System.currentTimeMillis();
         this.sprites = new Sprite[]{oneInTensDigit, oneInOnesDigit};
     }
 
     @Override
     public void update() {
-        if (timer.milliseconds() > 1000) {
+        if (System.currentTimeMillis()-lastTime > 1000) {
             if (oneInTensDigit.getY() == 1 || oneInOnesDigit.getY() == 1) {
                 oneInOnesDigit.setPosition(oneInOnesDigit.getX(), oneInOnesDigit.getY() - 1);
                 oneInTensDigit.setPosition(oneInTensDigit.getX(), oneInTensDigit.getY() - 1);
             }
             oneInTensDigit.setPosition(oneInTensDigit.getX(), oneInTensDigit.getY() + 1);
             oneInOnesDigit.setPosition(oneInOnesDigit.getX(), oneInOnesDigit.getY() + 1);
-            timer.reset();
-        } if (timer.milliseconds() > 500) {
+            lastTime = System.currentTimeMillis();
+        } if (System.currentTimeMillis()-lastTime > 500) {
             oneInTensDigit.setColor(Color.ORANGE);
             oneInOnesDigit.setColor(Color.PURPLE);
         }

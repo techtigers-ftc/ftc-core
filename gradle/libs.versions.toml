@@ -4,8 +4,6 @@ junit-jupiter = "5.10.3"
 mockito = "5.12.0"
 ftcrobot = "9.0.1"
 roadrunner = "0.5.5"
-nmcp = "0.0.9"
-maven-publish = "0.29.0"
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref ="junit-jupiter" }
@@ -16,5 +14,5 @@ roadrunner = { module = "com.acmerobotics.roadrunner:core", version.ref = "roadr
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
-gradle-mavencentral = { id = "com.gradleup.nmcp", version.ref = "nmcp" }
-gradle-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+
