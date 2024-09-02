@@ -1,31 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
+    id 'java-library'
 }
 
-android {
-    namespace 'team.techtigers.core'
-    compileSdk 34
-
-    defaultConfig {
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
 dependencies {
     testImplementation libs.junit.jupiter
     testImplementation libs.junit.jupiter.params
@@ -34,4 +10,9 @@ dependencies {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
