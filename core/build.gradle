@@ -1,5 +1,28 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group = PROJECT_GROUP
+version = VERSION_NAME
+
+jar {
+    manifest {
+        attributes(
+            'Specification-Title': group + project.name,
+            'Specification-Version': version,
+            'Specification-Vendor': ORG_NAME,
+            'Implementation-Title': group + project.name,
+            'Implementation-Version': version,
+            'Implementation-Vendor': ORG_NAME
+        )
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
@@ -12,7 +35,70 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+publishing {
+    publications {
+        core(MavenPublication) {
+            from components.java
+            pom {
+                name = POM_PROJECT_NAME
+                description = POM_PROJECT_DESCRIPTION
+                url = GIT_HTTPS_PATH + GIT_PROJECT
+                organization {
+                    name = ORG_NAME
+                    url = ORG_URL
+                }
+                licenses {
+                    license {
+                        name = POM_LICENSE_NAME
+                        url = POM_LICENSE_URL
+                    }
+                }
+                scm {
+                    connection = 'scm:git:' + GIT_HTTPS_PATH + GIT_PROJECT + '.git'
+                    developerConnection = 'scm:git:' + GIT_SSH_PATH + GIT_PROJECT + '.git'
+                    url = GIT_HTTPS_PATH + GIT_PROJECT
+                }
+                developers {
+                    if(project.hasProperty('POM_LEAD_DEVELOPER_ID')) {
+                        developer {
+                            id = POM_LEAD_DEVELOPER_ID
+                            name = POM_LEAD_DEVELOPER_NAME
+                            email = POM_LEAD_DEVELOPER_EMAIL
+                            roles = ['lead', 'developer']
+                        }
+                    }
+
+                    for (int devId=1; devId<=10; devId++) {
+                        String prefix = 'POM_DEVELOPER_' + devId;
+                        if (project.hasProperty(prefix + '_ID')) {
+                            developer {
+                                id = project.getProperties()[prefix + '_ID']
+                                name = project.getProperties()[prefix + '_NAME']
+                                email = project.getProperties()[prefix + '_EMAIL']
+                                roles = ['developer']
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+//        maven {
+//            credentials {
+//                username = System.env.ART_USERNAME
+//                password = System.env.ART_PASSWORD
+//            }
+//
+//            url "https://artifactory.myartifactoryurl/artifactory/maven"
+//        }
+        maven {
+            url = layout.buildDirectory.dir("dist")
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.core
 }

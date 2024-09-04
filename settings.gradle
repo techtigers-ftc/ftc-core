@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ftc-core"
+rootProject.name = 'ftc-libs'
 include ':core'
