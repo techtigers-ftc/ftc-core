@@ -85,16 +85,12 @@ publishing {
     }
 
     repositories {
-//        maven {
-//            credentials {
-//                username = System.env.ART_USERNAME
-//                password = System.env.ART_PASSWORD
-//            }
-//
-//            url "https://artifactory.myartifactoryurl/artifactory/maven"
-//        }
         maven {
-            url = layout.buildDirectory.dir("dist")
+            credentials {
+                username = System.env.MAVEN_USERNAME
+                password = System.env.MAVEN_PASSWORD
+            }
+            url "https://repo1.maven.org/maven2/"
         }
     }
 }
