@@ -1,4 +1,4 @@
-package team.techtigers.core.leddisplay;
+package team.techtigers.core.display;
 
 /**
  * Class to represent the bytes in an RGB or RGBW color.

@@ -1,4 +1,4 @@
-package team.techtigers.core.leddisplay;
+package team.techtigers.core.display;
 
 /**
  * An abstract class which represents a sprite with a position and size
