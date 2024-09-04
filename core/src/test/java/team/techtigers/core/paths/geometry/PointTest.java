@@ -69,7 +69,7 @@ public class PointTest {
     void testAngleTo() {
         Point p1 = new Point(1.0, 2.0);
         Point p2 = new Point(4.0, 6.0);
-        assertEquals(Math.atan(4.0 / 3.0), p1.angleTo(p2));
+        assertEquals(Math.acos(8/Math.sqrt(65)), p1.angleTo(p2));
     }
 
     @Test

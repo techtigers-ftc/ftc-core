@@ -108,7 +108,7 @@ public class Point {
      * @return The angle between two Points
      */
     public double angleTo(Point other) {
-        return this.add(other.multiply(-1)).polarAngle();
+        return Math.acos((x*other.x + y*other.y) / (magnitude() * other.magnitude()));
     }
 
     @Override

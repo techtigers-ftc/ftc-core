@@ -13,19 +13,24 @@ public class GraphBuilder {
 
     /**
      * Build a graph using the 36 tiles on the field, the provided map, and the number of divisions per tile.
-     * @param fieldMap A square 2D array with only 1s and 0s, with each value representing whether or not the
-     *                 robot is allowed to travel to that coordinate. Use this field to block out known obstacles.
+     * A standard field goes from -72 to 72
+     *
+     * @param fieldMap         A square 2D array with only 1s and 0s, with each value representing whether or not the
+     *                         robot is allowed to travel to that coordinate. Use this field to block out known obstacles.
      * @param divisionsPerTile Used to scale the coordinates of the final graph. The number of
-     *                         divisions per each field tile used.
+     *                         divisions in one direction per each field tile
+     *                         used.
      * @return A graph representing the field given
      */
     public static FieldGraph buildGraph(int[][] fieldMap, double divisionsPerTile) {
 
         HashMap<Point, FieldNode> map = new HashMap<>();
-        for (int x = 0; x < fieldMap.length; x++) {
-            for (int y = 0; y < fieldMap[x].length; y++) {
-                Point bottomRight = new Point(fieldMap.length - 1 - x, fieldMap[x].length - 1 - y);
-                boolean isIncluded = fieldMap[x][y] != 0;
+        for (int x = -fieldMap.length / 2; x < fieldMap.length / 2; x++) {
+            int xIndex = x + fieldMap.length / 2;
+            for (int y = -fieldMap[xIndex].length / 2; y < fieldMap[xIndex].length / 2; y++) {
+                int yIndex = y + fieldMap[xIndex].length / 2;
+                Point bottomRight = new Point(x + 1, y + 1);
+                boolean isIncluded = fieldMap[xIndex][yIndex] != 0;
                 FieldNode node = new FieldNode(new Rectangle(
                         new Point(bottomRight.x + 1, bottomRight.y),
                         new Point(bottomRight.x, bottomRight.y + 1)
@@ -50,9 +55,13 @@ public class GraphBuilder {
 
         for (Point k : map.keySet()) {
             FieldNode n = map.get(k);
-            // This will not work for non-square maps.
+            // This will not work for non-square tiles.
             n.getValue().scale(24.0 / divisionsPerTile);
+
+            System.out.println("Node: " + n);
         }
+
+
         return new FieldGraph(map);
     }
 }

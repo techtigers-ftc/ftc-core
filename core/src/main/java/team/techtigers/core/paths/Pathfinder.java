@@ -12,8 +12,8 @@ import team.techtigers.core.paths.routeplanning.GraphBuilder;
 
 
 /**
- * Returns a trajectory sequence given a starting and ending position, accounting for any known
- * obstacles on the field.
+ * Returns a set of waypoints given a starting and ending position, accounting
+ * for any known obstacles on the field.
  */
 public class Pathfinder {
     private static final double BACK_ANGLE_TOLERANCE = Math.toRadians(45);
@@ -26,8 +26,9 @@ public class Pathfinder {
 
     /**
      * Construct a Pathfinder
-     * @param fieldMap The map of the field Pathfinder uses to route
-     * @param divisionsPerTile The number of subdivisions per tile
+     *
+     * @param fieldMap         The map of the field Pathfinder uses to route
+     * @param divisionsPerTile The number of subdivisions per tile in one direction
      */
     private Pathfinder(int[][] fieldMap, double divisionsPerTile) {
         graph = GraphBuilder.buildGraph(fieldMap, divisionsPerTile);
@@ -37,6 +38,9 @@ public class Pathfinder {
 
     /**
      * Initialize the Pathfinder instance
+     *
+     * @param fieldMap         The map of the field Pathfinder uses to route
+     * @param divisionsPerTile The number of subdivisions per tile in one direction
      */
     public static void initialize(int[][] fieldMap, double divisionsPerTile) {
         instance = new Pathfinder(fieldMap, divisionsPerTile);
@@ -101,26 +105,43 @@ public class Pathfinder {
     }
 
     /**
-     * Generate a TrajectorySequence from any pose to another
+     * Overload to generate a path while defaulting pruneNodes to true
      *
-     * @param startPoint The starting pose
-     * @param endPoint   The ending Pose
-     * @return A list of Waypoints that represent the path
+     * @param startPoint The starting point
+     * @param endPoint   The ending point
+     * @return A list of waypoints that represent the path
+     */
+    public ArrayList<Waypoint> generatePath(Waypoint startPoint, Waypoint endPoint) throws ClosestNodeIsTooFarException, PathCannotBeFoundException, NodeCannotBeFoundException {
+        return generatePath(startPoint, endPoint, true);
+    }
+
+
+    /**
+     * Generate a set of waypoints from any pose to another
+     *
+     * @param startPoint The starting point
+     * @param endPoint   The ending point
+     * @param pruneNodes Whether to remove nodes on the same line or not.
+     *                   Ex: (0,0), (1,0), (2,0), prune nodes would remove (1,0)
+     *                   because it's on the same line as the other 2 points
+     * @return A list of waypoints that represent the path
      */
     public ArrayList<Waypoint> generatePath(Waypoint startPoint,
-                                            Waypoint endPoint) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
+                                            Waypoint endPoint, boolean pruneNodes) throws ClosestNodeIsTooFarException, NodeCannotBeFoundException, PathCannotBeFoundException {
         if (pointCloseEnough(startPoint, endPoint)) {
             throw new PathCannotBeFoundException();
         }
 
         graph.reset();
 
-        double threshold = 36/this.divisionsPerTile * Math.sqrt(2);
+        double threshold = 36 / this.divisionsPerTile * Math.sqrt(2);
 
         FieldNode start = graph.getClosestNode(startPoint.getPoint(), threshold);
         FieldNode end = graph.getClosestNode(endPoint.getPoint(), threshold);
 
-        if (start.getValue().center.equals(end.getValue().center)) {
+        if (start.getValue().center.equals(end.getValue().center)
+                || startPoint.getPoint().dist(endPoint.getPoint())
+                <= startPoint.getPoint().dist(start.getValue().center)) {
             return new ArrayList<>(
                     Arrays.asList(startPoint, endPoint));
         }
@@ -171,7 +192,13 @@ public class Pathfinder {
             }
         }
 
-        path = pruneNodes(path);
+        if (pruneNodes) {
+            path = pruneNodes(path);
+        }
+
+        for (Waypoint point: path) {
+            System.out.println(point);
+        }
 
         return path;
     }
