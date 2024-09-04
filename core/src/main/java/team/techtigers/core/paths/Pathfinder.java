@@ -139,7 +139,9 @@ public class Pathfinder {
         FieldNode start = graph.getClosestNode(startPoint.getPoint(), threshold);
         FieldNode end = graph.getClosestNode(endPoint.getPoint(), threshold);
 
-        if (start.getValue().center.equals(end.getValue().center)) {
+        if (start.getValue().center.equals(end.getValue().center)
+                || startPoint.getPoint().dist(endPoint.getPoint())
+                <= startPoint.getPoint().dist(start.getValue().center)) {
             return new ArrayList<>(
                     Arrays.asList(startPoint, endPoint));
         }
@@ -192,6 +194,10 @@ public class Pathfinder {
 
         if (pruneNodes) {
             path = pruneNodes(path);
+        }
+
+        for (Waypoint point: path) {
+            System.out.println(point);
         }
 
         return path;
