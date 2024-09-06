@@ -29,6 +29,9 @@ public class GraphBuilder {
             for (int y = 0; y < fieldMap[x].length; y++) {
                 int xIndex = -1 - x + fieldMap.length / 2;
                 int yIndex = y - fieldMap[x].length / 2;
+
+                // Doing this because x and y values on graph are flipped to
+                // what they're supposed to be
                 Point bottomLeft = new Point(yIndex, xIndex);
                 boolean isIncluded = fieldMap[x][y] != 0;
                 FieldNode node = new FieldNode(new Rectangle(
