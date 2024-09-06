@@ -14,7 +14,7 @@ public class Waypoint {
     /**
      * Constructs a new Waypoint using a point input
      *
-     * @param point The pose to be saved inside the class
+     * @param point   The pose to be saved inside the class
      * @param heading The heading
      */
     public Waypoint(Point point, double heading) {
@@ -46,7 +46,7 @@ public class Waypoint {
     /**
      * Constructs a Waypoint using a Point
      *
-     * @param point   The point of the Waypoint
+     * @param point The point of the Waypoint
      */
     public Waypoint(Point point) {
         this(point.x, point.y);

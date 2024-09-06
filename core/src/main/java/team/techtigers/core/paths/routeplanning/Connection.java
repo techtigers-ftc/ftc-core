@@ -27,6 +27,7 @@ public class Connection {
 
     /**
      * Get the target
+     *
      * @return The target
      */
     public Node getTarget() {

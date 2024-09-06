@@ -83,7 +83,6 @@ public abstract class DisplayRegion {
         }
     }
 
-
     /**
      * an abstract method implemented by child classes which updates the LEDs
      */

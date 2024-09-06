@@ -25,7 +25,7 @@ public class Pathfinder {
 
 
     /**
-     * Construct a Pathfinder
+     * Constructs Pathfinder
      *
      * @param fieldMap         The map of the field Pathfinder uses to route
      * @param divisionsPerTile The number of subdivisions per tile in one direction
@@ -117,7 +117,7 @@ public class Pathfinder {
 
 
     /**
-     * Generate a set of waypoints from any pose to another
+     * Generates a set of waypoints from any pose to another
      *
      * @param startPoint The starting point
      * @param endPoint   The ending point
@@ -196,7 +196,7 @@ public class Pathfinder {
             path = pruneNodes(path);
         }
 
-        for (Waypoint point: path) {
+        for (Waypoint point : path) {
             System.out.println(point);
         }
 

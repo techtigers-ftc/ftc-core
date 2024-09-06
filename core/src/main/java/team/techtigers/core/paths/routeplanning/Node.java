@@ -44,7 +44,7 @@ public class Node<T> {
     }
 
     /**
-     * Construct a Node
+     * Constructs a Node
      * The connections will be an empty ArrayList
      *
      * @param value A value associated with the Node
@@ -139,6 +139,7 @@ public class Node<T> {
 
     /**
      * Get the connections
+     *
      * @return The connections
      */
     public ArrayList<Connection> getConnections() {
@@ -168,6 +169,7 @@ public class Node<T> {
      * Print out the node for debugging purposes
      */
     public void dump() {
+        System.out.println("Node: " + this.id + " Cost: " + this.cost + " Source: " + this.source);
     }
 }
 
