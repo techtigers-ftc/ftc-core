@@ -25,18 +25,18 @@ public class GraphBuilder {
     public static FieldGraph buildGraph(int[][] fieldMap, double divisionsPerTile) {
 
         HashMap<Point, FieldNode> map = new HashMap<>();
-        for (int x = -fieldMap.length / 2; x < fieldMap.length / 2; x++) {
-            int xIndex = x + fieldMap.length / 2;
-            for (int y = -fieldMap[xIndex].length / 2; y < fieldMap[xIndex].length / 2; y++) {
-                int yIndex = y + fieldMap[xIndex].length / 2;
-                Point bottomRight = new Point(x + 1, y + 1);
-                boolean isIncluded = fieldMap[xIndex][yIndex] != 0;
+        for (int x = 0; x < fieldMap.length; x++) {
+            for (int y = 0; y < fieldMap[x].length; y++) {
+                int xIndex = -1 - x + fieldMap.length / 2;
+                int yIndex = y - fieldMap[x].length / 2;
+                Point bottomLeft = new Point(yIndex, xIndex);
+                boolean isIncluded = fieldMap[x][y] != 0;
                 FieldNode node = new FieldNode(new Rectangle(
-                        new Point(bottomRight.x + 1, bottomRight.y),
-                        new Point(bottomRight.x, bottomRight.y + 1)
+                        new Point(bottomLeft.x + 1, bottomLeft.y + 1),
+                        bottomLeft
                 ));
                 if (isIncluded) {
-                    map.put(bottomRight, node);
+                    map.put(bottomLeft, node);
                 }
             }
         }
