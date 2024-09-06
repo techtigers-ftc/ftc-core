@@ -12,8 +12,8 @@ import team.techtigers.core.paths.geometry.Rectangle;
 public class GraphBuilder {
 
     /**
-     * Build a graph using the 36 tiles on the field, the provided map, and the number of divisions per tile.
-     * A standard field goes from -72 to 72 in 2 axis
+     * Builds a graph using the 36 tiles on the field, the provided map, and the number of divisions per tile.
+     * A standard field goes from -72 to 72 in 2 axes
      *
      * @param fieldMap         A square 2D array with only 1s and 0s, with each value representing whether or not the
      *                         robot is allowed to travel to that coordinate. Use this field to block out known obstacles.

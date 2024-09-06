@@ -26,7 +26,7 @@ public class Connection {
     }
 
     /**
-     * Get the target
+     * Gets the target
      *
      * @return The target
      */

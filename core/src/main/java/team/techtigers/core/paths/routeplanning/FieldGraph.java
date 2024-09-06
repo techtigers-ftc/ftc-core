@@ -33,7 +33,7 @@ public class FieldGraph {
     }
 
     /**
-     * Get the map
+     * Gets the map
      *
      * @return The map
      */
