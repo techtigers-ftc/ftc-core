@@ -60,8 +60,6 @@ public class GraphBuilder {
             FieldNode n = map.get(k);
             // This will not work for non-square tiles.
             n.getValue().scale(24.0 / divisionsPerTile);
-
-            System.out.println("Node: " + n);
         }
 
 

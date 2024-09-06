@@ -196,10 +196,6 @@ public class Pathfinder {
             path = pruneNodes(path);
         }
 
-        for (Waypoint point : path) {
-            System.out.println(point);
-        }
-
         return path;
     }
 }
