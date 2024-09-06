@@ -3,10 +3,10 @@ package team.techtigers.core.utils;
 import java.util.HashMap;
 
 /**
- * Saves any value from one opmode to be used in another
+ * Saves values from one opmode to be used in another
  */
 public class RobotSaveState {
-    private HashMap<String, Object> state;
+    private final HashMap<String, Object> state;
     private static RobotSaveState instance;
 
     private RobotSaveState() {
@@ -28,8 +28,9 @@ public class RobotSaveState {
     }
 
     /**
-     * Gets the current robot state
+     * Gets a value from the current robot state
      *
+     * @param key The key to be used for identification
      * @return The current robot state
      */
     public Object getState(String key) {

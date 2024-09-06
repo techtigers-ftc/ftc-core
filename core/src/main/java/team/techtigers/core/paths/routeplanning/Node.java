@@ -21,7 +21,7 @@ public class Node<T> {
     private T value;
 
     /**
-     * Construct a Node
+     * Constructs a Node
      *
      * @param connections The connections to the Node
      * @param id          An ID you can associate with the Node for debugging purposes
@@ -33,7 +33,7 @@ public class Node<T> {
     }
 
     /**
-     * Construct a Node
+     * Constructs a Node
      *
      * @param connections The connections to the Node
      * @param value       A value associated with the Node
@@ -44,7 +44,7 @@ public class Node<T> {
     }
 
     /**
-     * Construct a Node
+     * Constructs a Node
      * The connections will be an empty ArrayList
      *
      * @param value A value associated with the Node
@@ -111,7 +111,7 @@ public class Node<T> {
     }
 
     /**
-     * Get the Node's value
+     * Gets the Node's value
      *
      * @return The value
      */
@@ -120,7 +120,7 @@ public class Node<T> {
     }
 
     /**
-     * Add multiple connections
+     * Adds multiple connections
      *
      * @param conns The connections
      */
@@ -129,7 +129,7 @@ public class Node<T> {
     }
 
     /**
-     * Add one connection
+     * Adds one connection
      *
      * @param conn The connection
      */
@@ -138,7 +138,8 @@ public class Node<T> {
     }
 
     /**
-     * Get the connections
+     * Gets the connections
+     *
      * @return The connections
      */
     public ArrayList<Connection> getConnections() {
@@ -146,7 +147,7 @@ public class Node<T> {
     }
 
     /**
-     * Convert this Node to string
+     * Converts this Node to a string
      *
      * @return The value's string representation
      */
@@ -156,7 +157,7 @@ public class Node<T> {
     }
 
     /**
-     * Set the Node's cost
+     * Sets the Node's cost
      *
      * @param cost The Cost
      */
@@ -168,6 +169,7 @@ public class Node<T> {
      * Print out the node for debugging purposes
      */
     public void dump() {
+        System.out.println("Node: " + this.id + " Cost: " + this.cost + " Source: " + this.source);
     }
 }
 
