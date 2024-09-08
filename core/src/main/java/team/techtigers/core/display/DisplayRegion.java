@@ -1,4 +1,4 @@
-package team.techtigers.core.leddisplay;
+package team.techtigers.core.display;
 
 
 /**
@@ -82,7 +82,6 @@ public abstract class DisplayRegion {
             }
         }
     }
-
 
     /**
      * an abstract method implemented by child classes which updates the LEDs
