@@ -11,6 +11,14 @@ public abstract class Sprite {
     private boolean enabled;
     private Color color;
 
+    /**
+     * Constructs a sprite
+     *
+     * @param x the x coordinate of the bottom left corner of the sprite
+     * @param y the y coordinate of the bottom left corner of the sprite
+     * @param width the width of the sprite
+     * @param height the height of the sprite
+     */
     protected Sprite(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -21,6 +29,8 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns the x coordinate of the bottom left corner of the sprite within the region
+     *
      * @return the x coordinate of the bottom left corner of the sprite within the region
      */
     public int getX() {
@@ -28,6 +38,8 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns the y coordinate of the bottom left corner of the sprite within the region
+     *
      * @return the y coordinate of the bottom left corner of the sprite within the region
      */
     public int getY() {
@@ -46,6 +58,8 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns the color of the sprite
+     *
      * @return gets the current color the sprite is set to
      */
     public Color getColor() {
@@ -76,6 +90,8 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns whether or not the sprite is enabled
+     *
      * @return whether or not the sprite is enabled
      */
     public boolean isEnabled() {
@@ -94,6 +110,8 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns the width of the sprite
+     *
      * @return the width of the sprite
      */
     protected int getWidth() {
@@ -101,12 +119,19 @@ public abstract class Sprite {
     }
 
     /**
+     * Returns the height of the sprite
+     *
      * @return the height of the sprite
      */
     protected int getHeight() {
         return height;
     }
 
+    /**
+     * Shows the sprite on the LEDs
+     *
+     * @param leds an LED array that represents all the LEDs
+     */
     protected abstract void showSprite(Color[][] leds);
 
 }

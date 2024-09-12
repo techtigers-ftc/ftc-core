@@ -16,6 +16,8 @@ public abstract class DisplayView {
     }
 
     /**
+     * Returns the regions that make up the view
+     *
      * @return the regions that make up the view
      */
     public DisplayRegion[] getRegions() {
