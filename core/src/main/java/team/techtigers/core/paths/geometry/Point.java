@@ -21,6 +21,7 @@ public class Point {
     }
 
     /**
+     * Get the x coordinate
      * @return Get the x value
      */
     public double getX() {
@@ -28,6 +29,7 @@ public class Point {
     }
 
     /**
+     * Get the y coordinate
      * @return Get the y value
      */
     public double getY() {
@@ -41,6 +43,7 @@ public class Point {
     }
 
     /**
+     * Get the angle the point makes with the origin
      * @return The angle the point makes with the origin
      */
     public double polarAngle() {
@@ -48,6 +51,7 @@ public class Point {
     }
 
     /**
+     * Get the point's distance to the origin
      * @return The point's distance to the origin
      */
     public double magnitude() {
@@ -96,6 +100,7 @@ public class Point {
     }
 
     /**
+     * Return the euclidean distance between two points
      * @param other The other Point
      * @return The distance between the two Points
      */
@@ -104,6 +109,7 @@ public class Point {
     }
 
     /**
+     * Get the angle between two points
      * @param other Another Point
      * @return The angle between two Points
      */
@@ -126,7 +132,7 @@ public class Point {
     /**
      * Find the Manhattan distance from any point to another
      *
-     * @param other
+     * @param other The other point
      * @return the Manhattan distance
      */
     public double manhattan(Point other) {
