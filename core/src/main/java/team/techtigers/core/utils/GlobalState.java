@@ -8,6 +8,9 @@ import java.io.Serializable;
  * attributes that are desired in the state.
  */
 public class GlobalState implements Serializable {
+    /**
+     * Current system time in milliseconds
+     */
     private long startTime;
 
     /**

@@ -126,7 +126,7 @@ public class Point {
     /**
      * Find the Manhattan distance from any point to another
      *
-     * @param other
+     * @param other the other point
      * @return the Manhattan distance
      */
     public double manhattan(Point other) {

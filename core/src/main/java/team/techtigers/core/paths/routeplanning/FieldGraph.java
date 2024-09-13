@@ -45,7 +45,10 @@ public class FieldGraph {
      * Find the closest node in the map to the point provided
      *
      * @param startPoint The starting point
+     * @param threshold  The maximum distance from the point to the closest node
      * @return The FieldNode closest to the point given
+     * @throws NodeCannotBeFoundException   If no node can be found
+     * @throws ClosestNodeIsTooFarException If the closest node is too far
      */
     public FieldNode getClosestNode(Point startPoint, double threshold) throws NodeCannotBeFoundException, ClosestNodeIsTooFarException {
         FieldNode closest = null;

@@ -7,15 +7,19 @@ import java.util.Arrays;
  */
 public class Rectangle {
     /**
-     * Top right, bottom left, and center
+     * Top right, bottom left, and center points of the rectangle
      */
     private Point topRight;
     private Point bottomLeft;
+
+    /**
+     * The center of the rectangle
+     */
     public Point center;
 
 
     /**
-     * Construct a Rectangle
+     * Constructs a Rectangle
      *
      * @param topRight   The top right Point
      * @param bottomLeft The top left Point
@@ -28,7 +32,7 @@ public class Rectangle {
 
     /**
      * @param point A Point
-     * @return Whether this Rectangle contains the Point
+     * @return A boolean - whether this Rectangle contains the Point
      */
     public boolean contains(Point point) {
         return point.x > bottomLeft.x
