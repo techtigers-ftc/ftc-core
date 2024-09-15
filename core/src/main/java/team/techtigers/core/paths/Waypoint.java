@@ -54,6 +54,8 @@ public class Waypoint {
 
 
     /**
+     * Returns the waypoint as a Point
+     *
      * @return the waypoint as a Point
      */
     public Point getPoint() {
@@ -61,6 +63,8 @@ public class Waypoint {
     }
 
     /**
+     * Returns the x coordinate of the waypoint
+     *
      * @return the x coordinate of the waypoint
      */
     public double getX() {
@@ -68,6 +72,8 @@ public class Waypoint {
     }
 
     /**
+     * Returns the y coordinate of the waypoint
+     *
      * @return the y coordinate of the waypoint
      */
     public double getY() {
@@ -75,6 +81,8 @@ public class Waypoint {
     }
 
     /**
+     * Returns the heading of the waypoint
+     *
      * @return the heading of the waypoint
      */
     public double getHeading() {

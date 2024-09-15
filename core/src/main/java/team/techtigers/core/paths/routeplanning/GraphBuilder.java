@@ -12,6 +12,11 @@ import team.techtigers.core.paths.geometry.Rectangle;
 public class GraphBuilder {
 
     /**
+     * Constructs a GraphBuilder
+     */
+    public GraphBuilder() {}
+
+    /**
      * Builds a graph using the 36 tiles on the field, the provided map, and the number of divisions per tile.
      * A standard field goes from -72 to 72 in 2 axes
      *

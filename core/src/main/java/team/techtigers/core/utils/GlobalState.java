@@ -8,6 +8,9 @@ import java.io.Serializable;
  * attributes that are desired in the state.
  */
 public class GlobalState implements Serializable {
+    /**
+     * The time that the timer was started
+     */
     private long startTime;
 
     /**
@@ -18,6 +21,8 @@ public class GlobalState implements Serializable {
     }
 
     /**
+     * Returns the amount of time elapsed since the last reset
+     *
      * @return the amount of time elapsed since the last reset
      */
     public long getRunTime() {

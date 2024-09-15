@@ -88,6 +88,8 @@ public class Node<T> {
     }
 
     /**
+     * Returns the source node
+     *
      * @return The source Node
      */
     public Node<T> getSource() {
@@ -95,6 +97,8 @@ public class Node<T> {
     }
 
     /**
+     * Returns the cost of the Node
+     *
      * @return The cost
      */
     public double getCost() {

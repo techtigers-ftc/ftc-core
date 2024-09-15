@@ -10,6 +10,13 @@ import java.util.PriorityQueue;
  * @param <T> The type of the value associated with Nodes
  */
 public class Dijkstra<T extends Node> {
+
+    /**
+     * Constructs a new Dijkstra
+     */
+    public Dijkstra() {
+    }
+
     /**
      * Find a path from any point to another with the least possible cost
      * (in our case, cost will be based on distance travelled and the number of changes in direction)

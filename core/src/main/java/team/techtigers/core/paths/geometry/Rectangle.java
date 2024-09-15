@@ -7,10 +7,18 @@ import java.util.Arrays;
  */
 public class Rectangle {
     /**
-     * Top right, bottom left, and center
+     * Top right point
      */
     private Point topRight;
+
+    /**
+     * Bottom left point
+     */
     private Point bottomLeft;
+
+    /**
+     * Center point
+     */
     public Point center;
 
 
@@ -27,6 +35,8 @@ public class Rectangle {
     }
 
     /**
+     * Returns whether this Rectangle contains a Point
+     *
      * @param point A Point
      * @return Whether this Rectangle contains the Point
      */
@@ -38,6 +48,8 @@ public class Rectangle {
     }
 
     /**
+     * Returns whether this Rectangle overlaps with another Rectangle
+     *
      * @param other Another Rectangle
      * @return Whether this Rectangle overlaps with another Rectangle
      */
@@ -46,6 +58,8 @@ public class Rectangle {
     }
 
     /**
+     * Returns the points of this Rectangle
+     *
      * @return The points of this Rectangle
      */
     public Point[] getPoints() {

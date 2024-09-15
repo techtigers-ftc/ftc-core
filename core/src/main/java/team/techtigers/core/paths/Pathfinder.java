@@ -107,9 +107,9 @@ public class Pathfinder {
     /**
      * Overload to generate a path while defaulting pruneNodes to true
      *
-     * @throws ClosestNodeIsTooFarException
-     * @throws PathCannotBeFoundException
-     * @throws NodeCannotBeFoundException
+     * @throws ClosestNodeIsTooFarException If the closest node is too far
+     * @throws PathCannotBeFoundException  If the path cannot be found
+     * @throws NodeCannotBeFoundException If the node cannot be found
      * @param startPoint The starting point
      * @param endPoint   The ending point
      * @return A list of waypoints that represent the path
@@ -122,9 +122,9 @@ public class Pathfinder {
     /**
      * Generates a set of waypoints from any pose to another
      *
-     * @throws ClosestNodeIsTooFarException
-     * @throws NodeCannotBeFoundException
-     * @throws PathCannotBeFoundException
+     * @throws ClosestNodeIsTooFarException If the closest node is too far
+     * @throws NodeCannotBeFoundException If the node cannot be found
+     * @throws PathCannotBeFoundException If the path cannot be found
      * @param startPoint The starting point
      * @param endPoint   The ending point
      * @param pruneNodes Whether to remove nodes on the same line or not.
