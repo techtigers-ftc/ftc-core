@@ -14,5 +14,4 @@ roadrunner = { module = "com.acmerobotics.roadrunner:core", version.ref = "roadr
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
-android-application = { id = "com.android.application", version.ref = "agp" }
 
