@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
+    id 'maven-publish'
 }
+
+group = 'team.techtigers.ftc'
+version = '0.1.0'
 
 android {
     namespace 'team.techtigers.core'
@@ -21,17 +25,65 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 }
+
 dependencies {
     testImplementation libs.junit.jupiter
     testImplementation libs.junit.jupiter.params
     testImplementation libs.mockito.core
+    implementation libs.appcompat
+    implementation libs.google.material
 }
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create("release", MavenPublication) {
+                from components.release
+
+                groupId = project.group
+                artifactId = 'ftc-core'
+                version = project.version
+
+                pom {
+                    name = 'Tech Tigers FTC Core Library'
+                    description = 'A concise description of my library'
+                    url = 'http://www.techtigers.team'
+                    licenses {
+                        license {
+                            name = 'The MIT License'
+                            url = 'https://opensource.org/license/mit'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'techtigers'
+                            name = 'Tech Tigers'
+                            email = 'techtigers33958@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com:techtigers-ftc/ftc-core.git'
+                        developerConnection = 'scm:git:https://github.com:techtigers-ftc/ftc-core.git'
+                        url = 'https://github.com/techtigers-ftc/ftc-core'
+                    }
+                }
+            }
+        }
+    }
 }
