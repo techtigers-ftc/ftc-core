@@ -1,6 +1,8 @@
 package team.techtigers.core.display;
 
 
+import team.techtigers.core.display.sprites.Sprite;
+
 /**
  * An interface for a display region on the LEDs
  * Will be able to define a region within the LED arrays to be lit up in specific patterns

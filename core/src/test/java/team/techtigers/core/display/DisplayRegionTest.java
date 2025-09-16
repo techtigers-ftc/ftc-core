@@ -3,6 +3,8 @@ package team.techtigers.core.display;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import team.techtigers.core.display.sprites.Sprite;
+
 class DisplayRegionTest {
 
     @Test
