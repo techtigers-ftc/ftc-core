@@ -4,17 +4,16 @@ import java.util.HashMap;
 
 
 /**
- * Output subsystem that controls the visual feedback display
+ * A class that represents and controls all of your LED displays
  */
 public class VisualDisplay {
     private final AdafruitNeoPixel visualDisplay;
     private final HashMap<String, DisplayView> views;
+    private final int displayHeight;
     private DisplayView activeView;
-    private int displayHeight;
-    private int displayWidth;
 
     /**
-     * Initializes a new visual feedback subsystem object. Obtains references to visual feedback
+     * Initializes a new visual display object and sets it to a default view
      *
      * @param visualDisplay the visual display object (adafruit neopixel)
      * @param defaultView   the default view to display
@@ -24,6 +23,7 @@ public class VisualDisplay {
         views = new HashMap<>();
         views.put("default", defaultView);
         activeView = defaultView;
+        displayHeight = 8;
     }
 
     /**
@@ -67,7 +67,7 @@ public class VisualDisplay {
     }
 
     /**
-     * Updates the color of the LEDs based on the current state of the robot
+     * Updates the displays and their regions
      */
     public void update() {
         visualDisplay.clearLeds();
