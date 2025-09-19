@@ -55,10 +55,6 @@ public class VisualDisplay {
     protected int findLedArrayIndex(int ledX, int ledY) {
         if (ledX < 8) {
             ledX = 7 - ledX;
-        } else if (ledX > 39) {
-            ledX = ledX - 40;
-            ledX = 7 - ledX;
-            ledX = ledX + 40;
         } else {
             ledY = 7 - ledY;
         }
