@@ -4,16 +4,16 @@ package team.techtigers.core.display.sprites;
 import team.techtigers.core.display.Color;
 
 /**
- * A class which represents a up arrow shaped sprite
+ * A class which displays an up arrow shaped sprite
  */
 public class UpArrowSprite extends Sprite {
 
     /**
      * Creates a new up arrow sprite
      *
-     * @param x     the x coordinate of the bottom left corner of the sprite within the region
-     * @param y     the y coordinate of the bottom left corner of the sprite within the region
-     * @param width the width of the arrow
+     * @param x      the x coordinate of the bottom left corner of the sprite within the region
+     * @param y      the y coordinate of the bottom left corner of the sprite within the region
+     * @param width  the width of the arrow
      * @param height the height of the arrow
      */
     public UpArrowSprite(int x, int y, int width, int height) {

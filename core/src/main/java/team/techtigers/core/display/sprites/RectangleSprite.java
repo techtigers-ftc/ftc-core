@@ -4,16 +4,17 @@ package team.techtigers.core.display.sprites;
 import team.techtigers.core.display.Color;
 
 /**
- * A class which represents a rectangle shaped sprite
+ * A class which displays a rectangle shaped sprite
  */
 public class RectangleSprite extends Sprite {
 
     /**
      * Creates a new rectangle sprite
      *
-     * @param x     the x coordinate of the bottom left corner of the sprite within the region
-     * @param y     the y coordinate of the bottom left corner of the sprite within the region
-     * @param width the width of the line
+     * @param x      the x coordinate of the bottom left corner of the sprite within the region
+     * @param y      the y coordinate of the bottom left corner of the sprite within the region
+     * @param width  the width of the line
+     * @param height the height of the line
      */
     public RectangleSprite(int x, int y, int width, int height) {
         super(x, y, width, height);

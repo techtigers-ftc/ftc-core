@@ -4,17 +4,17 @@ package team.techtigers.core.display.sprites;
 import team.techtigers.core.display.Color;
 
 /**
- * A class which represents a x shaped sprite
+ * A class which represents a X shaped sprite
  */
 public class XSprite extends Sprite {
 
     /**
      * Creates a new x sprite
      *
-     * @param x     the x coordinate of the bottom left corner of the sprite within the region
-     * @param y     the y coordinate of the bottom left corner of the sprite within the region
-     * @param width the width of the x
-     * @param height the height of the x
+     * @param x      the x coordinate of the bottom left corner of the sprite within the region
+     * @param y      the y coordinate of the bottom left corner of the sprite within the region
+     * @param width  the width of the X
+     * @param height the height of the X
      */
     public XSprite(int x, int y, int width, int height) {
         super(x, y, width, height);
