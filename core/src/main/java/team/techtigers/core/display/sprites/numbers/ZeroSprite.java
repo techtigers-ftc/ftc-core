@@ -21,7 +21,7 @@ public class ZeroSprite extends Sprite {
 
     @Override
     protected void showSprite(Color[][] leds) {
-        for (int i = 0; i < getHeight(); i ++) {
+        for (int i = 0; i < getHeight(); i++) {
             leds[getX()][getY() + i] = getColor();
             leds[getX() + 2][getY() + i] = getColor();
         }

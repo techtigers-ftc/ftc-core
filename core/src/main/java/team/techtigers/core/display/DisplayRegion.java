@@ -99,7 +99,7 @@ public abstract class DisplayRegion {
 
     protected void disableAllButSelectedSprites(int... spriteIndexes) {
         disableAllSprites();
-        for(int spriteIndex : spriteIndexes) {
+        for (int spriteIndex : spriteIndexes) {
             getSprites()[spriteIndex].enable();
         }
     }
