@@ -61,7 +61,9 @@ afterEvaluate {
 
                 pom {
                     name = 'Tech Tigers FTC Core Library'
-                    description = 'A concise description of my library'
+                    description = 'A library which contains multiple resources for FTC teams,' +
+                            ' including drivers for LED displays,  route planners, and other' +
+                            'useful utilities.'
                     url = 'http://www.techtigers.team'
                     licenses {
                         license {
