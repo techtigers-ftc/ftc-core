@@ -8,8 +8,10 @@ import java.util.HashMap;
  */
 public class VisualDisplay {
     private final AdafruitNeoPixel visualDisplay;
-    final HashMap<String, DisplayView> views;
-    DisplayView activeView;
+    private final HashMap<String, DisplayView> views;
+    private DisplayView activeView;
+    private int displayHeight;
+    private int displayWidth;
 
     /**
      * Initializes a new visual feedback subsystem object. Obtains references to visual feedback
@@ -51,20 +53,16 @@ public class VisualDisplay {
      * @return the index of the LED in the array
      */
     protected int findLedArrayIndex(int ledX, int ledY) {
-        if (ledX < 8) {
-            ledX = 7 - ledX;
-        } else if (ledX > 39) {
-            ledX = ledX - 40;
-            ledX = 7 - ledX;
-            ledX = ledX + 40;
+        if (ledX < displayHeight) {
+            ledX = displayHeight - ledX;
         } else {
-            ledY = 7 - ledY;
+            ledY = displayHeight - 1 - ledY;
         }
 
         if (ledX % 2 == 0) {
-            return ledX * 8 + ledY;
+            return ledX * displayHeight + ledY;
         } else {
-            return ledX * 8 + 7 - ledY;
+            return ledX * displayHeight + displayHeight - ledY;
         }
     }
 
