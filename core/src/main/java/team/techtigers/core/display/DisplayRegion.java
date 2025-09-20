@@ -85,18 +85,29 @@ public abstract class DisplayRegion {
         }
     }
 
+    /**
+     * Disables all of the sprites in a region
+     */
     protected void disableAllSprites() {
         for (Sprite sprite : getSprites()) {
             sprite.disable();
         }
     }
 
+    /**
+     * Enables all of the sprites in a region
+     */
     protected void enableAllSprites() {
         for (Sprite sprite : getSprites()) {
             sprite.enable();
         }
     }
 
+    /**
+     * Disables all sprites except the ones whose indices are given in this method
+     *
+     * @param spriteIndexes The indices of the sprites which you want to enable
+     */
     protected void disableAllButSelectedSprites(int... spriteIndexes) {
         disableAllSprites();
         for (int spriteIndex : spriteIndexes) {
@@ -105,7 +116,7 @@ public abstract class DisplayRegion {
     }
 
     /**
-     * an abstract method implemented by child classes which updates the LEDs
+     * An abstract method implemented by child classes which updates the LEDs
      */
     public abstract void update();
 
