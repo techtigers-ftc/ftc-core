@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class VisualDisplay {
     private final AdafruitNeoPixel visualDisplay;
     private final HashMap<String, DisplayView> views;
-    private final int displayHeight;
     private DisplayView activeView;
 
     /**
@@ -23,7 +22,6 @@ public class VisualDisplay {
         views = new HashMap<>();
         views.put("default", defaultView);
         activeView = defaultView;
-        displayHeight = 8;
     }
 
     /**
@@ -53,16 +51,12 @@ public class VisualDisplay {
      * @return the index of the LED in the array
      */
     protected int findLedArrayIndex(int ledX, int ledY) {
-        if (ledX < displayHeight) {
-            ledX = displayHeight - 1 - ledX;
-        } else {
-            ledY = displayHeight - 1 - ledY;
-        }
+        ledY = 7 - ledY;
 
         if (ledX % 2 == 0) {
-            return ledX * displayHeight + ledY;
+            return ledX * 8 + ledY;
         } else {
-            return ledX * displayHeight + displayHeight - 1 - ledY;
+            return ledX * 8 + 7 - ledY;
         }
     }
 
