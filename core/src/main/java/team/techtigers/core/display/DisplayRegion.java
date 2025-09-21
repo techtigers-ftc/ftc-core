@@ -1,6 +1,8 @@
 package team.techtigers.core.display;
 
 
+import team.techtigers.core.display.sprites.Sprite;
+
 /**
  * An interface for a display region on the LEDs
  * Will be able to define a region within the LED arrays to be lit up in specific patterns
@@ -84,7 +86,37 @@ public abstract class DisplayRegion {
     }
 
     /**
-     * an abstract method implemented by child classes which updates the LEDs
+     * Disables all of the sprites in a region
+     */
+    protected void disableAllSprites() {
+        for (Sprite sprite : getSprites()) {
+            sprite.disable();
+        }
+    }
+
+    /**
+     * Enables all of the sprites in a region
+     */
+    protected void enableAllSprites() {
+        for (Sprite sprite : getSprites()) {
+            sprite.enable();
+        }
+    }
+
+    /**
+     * Disables all sprites except the ones whose indices are given in this method
+     *
+     * @param spriteIndexes The indices of the sprites which you want to enable
+     */
+    protected void disableAllButSelectedSprites(int... spriteIndexes) {
+        disableAllSprites();
+        for (int spriteIndex : spriteIndexes) {
+            getSprites()[spriteIndex].enable();
+        }
+    }
+
+    /**
+     * An abstract method implemented by child classes which updates the LEDs
      */
     public abstract void update();
 

@@ -1,4 +1,6 @@
-package team.techtigers.core.display;
+package team.techtigers.core.display.sprites;
+
+import team.techtigers.core.display.Color;
 
 /**
  * An abstract class which represents a sprite with a position and size
