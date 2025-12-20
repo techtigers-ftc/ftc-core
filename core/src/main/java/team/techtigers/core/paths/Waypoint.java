@@ -81,6 +81,34 @@ public class Waypoint {
         return this.heading;
     }
 
+    /**
+     * Adds this waypoint to another waypoint, combining their positions and headings.
+     *
+     * @param other The waypoint to add
+     * @return A new Waypoint with the sum of positions and headings
+     */
+    public Waypoint add(Waypoint other) {
+        return new Waypoint(
+            this.getX() + other.getX(),
+            this.getY() + other.getY(),
+            this.heading + other.heading
+        );
+    }
+
+    /**
+     * Subtracts another waypoint from this waypoint.
+     *
+     * @param other The waypoint to subtract
+     * @return A new Waypoint with the difference of positions and headings
+     */
+    public Waypoint subtract(Waypoint other) {
+        return new Waypoint(
+            this.getX() - other.getX(),
+            this.getY() - other.getY(),
+            this.heading - other.heading
+        );
+    }
+
     @Override
     public String toString() {
         return "x: " + getX() + " y: " + getY() + " h: " + getHeading();
