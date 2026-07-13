@@ -40,7 +40,7 @@ public class Color {
      * @param green The green value
      * @param blue  The blue value
      */
-    public Color(byte red, byte blue, byte green) {
+    public Color(byte red, byte green, byte blue) {
         this(red, green, blue, (byte) 0x00);
     }
 
